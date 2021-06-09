@@ -11,20 +11,21 @@ Make this scaffolded app look and behave as described in the screenshots and vid
 Some work has already been done in the index.html file.
 Please do not use a framework, just vanilla javascript or typescript.
 You may use webpack, babel, or any other compiler you're comfortable with.
-You may also use ES6, do not worry about supporting ES5.
+You may also use ES6, do not worry about supporting ES5. Assume you're targeting only greenfield browsers.
 Try to timebox your work to approximately 1-2 hours.
 
 You may change anything provided to fit your needs, be it DOM structure, CSS, or javascript.
 
-# Requirements
-1. For simplicity, assume you're targeting a greenfield browser (no need for polyfills)
-1. Non-image files should be rejected when dropping on the gallery area at the bottom of the page.
-1. When dragging files onto the gallery drop zone, the dashed line should change color.
-1. Clicking on a gallery photo will display it in the main content area. The selected photo should also have a gray border when selected with a blue border when hovered.
-1. The displayed photo should display some metadata about it in the sidebar content area, including the file name, mime-type, and human-readable size of the image.
+# Requirements (in order of priority)
+1. The app should look and behave as close to the included screenshots/video as possible.
+1. Clicking on a gallery photo will display it in the main content area. 
+1. The selected photo should also have a gray border when selected with a blue border when hovered.
+1. The selected photo should display some metadata about it in the sidebar content area, including the file name, mime-type, and human-readable size of the image.
+1. The sidebar should have the same styles and interactions as demonstrated in the screenshots/video.
 1. Each section on the sidebar should have a subtitle to describe what it does with the styling demonstrated in the video/screenshots.
 1. The sidebar area should apply clips and filters (provided in the CSS) to the image in the main content area with the styling demonstrated in the video/screenshots.
-1. The app should look and behave as close to the included screenshots/video as possible.
+1. When dragging files onto the gallery drop zone, the dashed line should change color.
+1. Non-image files should be rejected when dropping on the gallery area at the bottom of the page.
 
 # Resources
 1. Watch an [interaction demo](https://www.loom.com/share/3d399d1bb85c4869aea30df23aaaa7cf) online.
