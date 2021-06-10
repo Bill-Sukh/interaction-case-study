@@ -8,7 +8,7 @@ The purpose of this case study is for us to better understand where your technic
 # Description
 Make this scaffolded app look and behave as described in the screenshots and video described in the **Resources** section below.
 
-Some work has already been done in the index.html file.
+Some work has already been done in the index.html file. You can open it directly in a web browser to see it and get started.
 Please do not use a framework, just vanilla javascript or typescript.
 You may use webpack, babel, or any other compiler you're comfortable with.
 You may also use ES6, do not worry about supporting ES5. Assume you're targeting only greenfield browsers.
@@ -19,11 +19,11 @@ You may change anything provided to fit your needs, be it DOM structure, CSS, or
 # Requirements (in order of priority)
 1. The app should look and behave as close to the included screenshots/video as possible.
 1. Clicking on a gallery photo will display it in the main content area. 
-1. The selected photo should also have a gray border when selected with a blue border when hovered.
-1. The selected photo should display some metadata about it in the sidebar content area, including the file name, mime-type, and human-readable size of the image.
 1. The sidebar should have the same styles and interactions as demonstrated in the screenshots/video.
-1. Each section on the sidebar should have a subtitle to describe what it does with the styling demonstrated in the video/screenshots.
 1. The sidebar area should apply clips and filters (provided in the CSS) to the image in the main content area with the styling demonstrated in the video/screenshots.
+1. The selected photo in the gallery should have a gray border when selected with a blue border when hovered.
+1. The selected photo should display some metadata about it in the sidebar content area, including the file name, mime-type, and human-readable size of the image.
+1. Each section on the sidebar should have a subtitle to describe what it does with the styling demonstrated in the video/screenshots.
 1. When dragging files onto the gallery drop zone, the dashed line should change color.
 1. Non-image files should be rejected when dropping on the gallery area at the bottom of the page.
 
