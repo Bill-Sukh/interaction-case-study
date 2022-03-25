@@ -3,251 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Front End Case Study</title>
-    <script defer type="text/javascript">
-        function initHandlers() {
-            initDragDropHandlers();
-            initFormHandlers();
-        }
-
-        /** 
-         * Javascript Related to Drag and Drop Events
-         * 
-         * These functions how dragging and dropping entities functions on the gallery.
-         * */
-        function initDragDropHandlers() {
-            const dropHandle = document.getElementById('gallery');
-            dropHandle.addEventListener("dragenter", dragenter, false);
-            dropHandle.addEventListener("dragover", dragover, false);
-            dropHandle.addEventListener("drop", drop, false);
-            dropHandle.addEventListener("dragleave", dragleave, false);
-        }
-
-        function dragenter(e) {
-            e.stopPropagation();
-            e.preventDefault();
-        }
-
-        function dragover(e) {
-            e.stopPropagation();
-            e.preventDefault();
-        }
-
-        function drop(e) {
-            e.stopPropagation();
-            e.preventDefault();
-
-            const dt = e.dataTransfer;
-            const files = dt.files;
-
-            handleFiles(files);
-        }
-
-        function handleFiles(files) {
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-
-                const placeholderText = document.getElementById('js-gallery__placeholder'); // Uses the js- prefix as a handle
-                placeholderText.style.display= "none";
-
-                const img = document.createElement("img");
-                img.classList.add('js-gallery__thumbnail');
-                img.classList.add('gallery__thumbnail');
-                img.file = file;
-                img.addEventListener('click', (e) => { // Gallery image click handler
-                    const reader = new FileReader();
-                    reader.onload = (e) => { 
-                        document.getElementById('js-editor__img').src = e.target.result; 
-                        const placeholderText = document.getElementById('js-editor__placeholder'); // Uses the js- prefix as a handle
-                        placeholderText.style.display= "none";
-                    };
-                    reader.readAsDataURL(file);
-                })
-                const galleryContentElement = document.getElementById('js-gallery__content');
-                galleryContentElement.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
-                galleryContentElement.classList.add('flex-center--left');
-
-                // Create a new FileReader and assign the image's source as 
-                const reader = new FileReader();
-                reader.onload = (e) => img.src = e.target.result; 
-                reader.readAsDataURL(file);
-            }
-        }
-
-        /** 
-         * Javascript Related to Form Handling
-         * 
-         * These functions control the adding/removing of CSS transforms to the image in the editor pane
-         * They are called by actions performed on the sidebar 
-         * */
-        function initFormHandlers() {
-            document.forms.namedItem('clip').addEventListener('change', (e) => changeShape(e.target.value));
-            document.forms.namedItem('filter').addEventListener('change', (e) => changeFilter(e.target.value));
-        }
-
-        function changeShape(shape) {
-            // TODO: Fill me in
-        }
-
-        function changeFilter(filter) {
-            // TODO: Fill me in
-        }
-
-        // Use this function to display filesize in a human-readable format
-        function humanizeFileSize(bytes, si=false, dp=1) {
-            const thresh = si ? 1000 : 1024;
-
-            if (Math.abs(bytes) < thresh) {
-                return bytes + ' B';
-            }
-
-            const units = si 
-                ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] 
-                : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
-            let u = -1;
-            const r = 10**dp;
-
-            do {
-                bytes /= thresh;
-                ++u;
-            } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
-
-
-            return bytes.toFixed(dp) + ' ' + units[u];
-        }
-
-        // Wait for the window to finish loading before executing our Javascript
-        window.onload = (event) => {
-            initHandlers();
-        }; 
-    </script>
-    <style>
-        /* CSS Variables for colors */
-        :root {
-            --background-off-white: rgb(237, 237, 237);
-            --white: rgb(255, 255, 255);
-            --placeholder-text: rgb(113, 116, 119);
-            --faded-border: rgba(130, 134, 136, 0.2);
-            --shadow-gray: rgb(0, 0, 0, 0.2);
-            --active-border: rgba(0, 91, 117, 0.6);
-            --scrollbar-foreground: rgb(237, 237, 237);
-            --checked-radio-background: rgb(245, 245, 245);
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
-
-        #page {
-            display: grid;
-            width: 100vw;
-            height: 100vh;
-            grid-template-areas: 
-            "editor sidebar"
-            "editor sidebar"
-            "gallery sidebar";
-            grid-template-columns: auto 20rem;
-            grid-template-rows: auto auto 8rem;
-        }
-
-        #editor {
-            grid-area: editor;
-            background-color: var(--background-off-white);
-        }
-
-        #sidebar {
-            grid-area: sidebar;
-            background-color: var(--white);
-            overflow: hidden;
-            padding: 1rem;
-        }
-
-        .metadata__info {
-            width: 100%;
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        #gallery {
-            grid-area: gallery;
-            padding: 5px;
-            min-width: 0;
-            display: block;
-            background-color: var(--background-off-white);
-        }
-
-        .gallery__content {
-            border-radius: 10px;
-            border: 2px dashed var(--faded-border);
-            height: calc(100% - 20px);
-            overflow-x: scroll;
-            max-width: 100%;
-            margin: 5px;
-            padding: 5px;
-            scrollbar-color: var(--faded-border) var(--scrollbar-foreground);
-        }
-
-        #editor img {
-            width: auto;
-            max-width: 100%;
-            max-height: 75%;
-            box-shadow: var(--shadow-gray) 0px 2px 4px;
-        }
-
-        /* CSS related to Clipping & Filtering */
-        .clip-circle {
-            clip-path: circle(60%);
-        }
-
-        .clip-triangle {
-            clip-path: polygon(50% 0, 100% 100%, 0 100%);
-        }
-
-        .clip-polygon {
-            clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
-        }
-
-        .filter-blur {
-            filter: blur(15px);
-        }
-
-        .filter-rotate {
-            filter: hue-rotate(90deg);
-        }
-
-        .filter-grayscale {
-            filter: grayscale(1);
-        }
-
-        .gallery__thumbnail {
-            height: 100%;
-            width: auto;
-            padding: 0;
-            margin: 0 1rem 0 0;
-            display: inline-block;
-            border-radius: 5px;
-            border: 2px transparent solid
-        }
-
-        .flex-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .flex-center--left {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        h2 {
-            margin-bottom: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body id="page">
     <div id="editor">
@@ -265,26 +21,34 @@
         <hr>
         <div id="clip">
             <h2>Clip</h2>
+            <p class="description">Change the shape of the selected image</p>
             <form name="clip">
                 <input type="radio" id="clip-none" name="clip-group" value="none" checked>
                 <label for="clip-none">None</label>
+
                 <input type="radio" id="circle" name="clip-group" value="circle">
                 <label for="circle">Curved</label>
+
                 <input type="radio" id="triangle" name="clip-group" value="triangle">
                 <label for="triangle">Triangle</label>
+
                 <input type="radio" id="polygon" name="clip-group" value="polygon">
                 <label for="polygon">Polygon</label>
             </form>
         </div>
         <div id="filter">
             <h2>Filter</h2>
+            <p class="description">Apply a filler to the selected image</p>
             <form name="filter">
                 <input type="radio" id="filter-none" name="filter-group" value="none" checked>
-                <label for="filter-none">None</label>            
+                <label for="filter-none">None</label>   
+
                 <input type="radio" id="blur" name="filter-group" value="blur">
                 <label for="blur">Blur</label>
+
                 <input type="radio" id="rotate" name="filter-group" value="rotate">
                 <label for="rotate">Hue Rotate</label>
+
                 <input type="radio" id="grayscale" name="filter-group" value="grayscale">
                 <label for="grayscale">Grayscale</label>
             </form>
@@ -295,5 +59,7 @@
             <span id="js-gallery__placeholder">Drop Photos Here</span>
         </div>
     </div>
+
+    <script src="js/main.js" defer type="text/javascript"></script>
 </body>
 </html>
