@@ -14,7 +14,8 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    font-size: 10px;
+    font-size: 12px;
+    overflow: hidden;
 }
 
 #page {
@@ -27,11 +28,20 @@ html, body {
     "gallery sidebar";
     grid-template-columns: auto 20rem;
     grid-template-rows: auto auto 8rem;
+    overflow: scroll;
 }
 
 #editor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-area: editor;
     background-color: var(--background-off-white);
+}
+
+#editor span{
+    font-size: 2.2rem;
+    color:rgb(93, 95, 97);
 }
 
 #sidebar {
@@ -60,12 +70,40 @@ html, body {
 .gallery__content {
     border-radius: 10px;
     border: 2px dashed var(--faded-border);
-    height: calc(100% - 20px);
-    overflow-x: scroll;
+    height: calc(100% - 12px);
     max-width: 100%;
-    margin: 5px;
     padding: 5px;
     scrollbar-color: var(--faded-border) var(--scrollbar-foreground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 0.9rem;
+    height: 0.8rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0.3rem;
+    border-radius: 0.3rem;
+    background: var(--faded-border); 
+}
+
+.gallery__content img:hover{
+    border: 0.2rem solid var(--active-border)
+}
+
+.gallery__content span{
+    color:rgb(111, 113, 116);
+    font-size: 2.2rem;
 }
 
 #editor img {
@@ -128,23 +166,27 @@ h2 {
 #sidebar h2{
     font-size: 1.8rem;
 }
-
+#sidebar .sidebar-metadata .description{
+    border:none;
+}
 #sidebar .description{
     margin:0;
     padding: 0.3rem 0;
-    
+    color:rgb(111, 113, 116);
+    border-bottom: 0.1rem solid gray;
+    font-size: 0.9rem;
 }
 #sidebar input{
     visibility: hidden;
 }
 #sidebar label{
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     font-size: 1.1rem;
 }
 
 #sidebar label:hover{
-    background-color: rgb(231, 231, 231);
+    background-color: rgb(245, 245, 245);
     border-radius: 0.2rem;
 }
 

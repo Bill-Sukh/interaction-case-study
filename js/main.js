@@ -1,3 +1,5 @@
+const gallery_content = document.querySelector('.gallery__content');
+
 function initHandlers() {
     initDragDropHandlers();
     initFormHandlers();
@@ -24,6 +26,7 @@ function dragenter(e) {
 function dragover(e) {
     e.stopPropagation();
     e.preventDefault();
+    gallery_content.style.borderColor = 'rgba(0, 91, 117, 0.6)';
 }
 
 function drop(e) {
@@ -32,13 +35,17 @@ function drop(e) {
 
     const dt = e.dataTransfer;
     const files = dt.files;
-
+    gallery_content.style.borderColor = 'rgba(130, 134, 136, 0.2)';
     handleFiles(files);
 }
 
 function dragleave(e){
     e.stopPropagation();
     e.preventDefault();
+
+    gallery_content.style.borderColor = 'rgba(130, 134, 136, 0.2)';
+    gallery_content.style.overflowX = 'scroll'; 
+    gallery_content.style.overflowY = 'hidden';
 }
 
 function handleFiles(files) { //images[]
