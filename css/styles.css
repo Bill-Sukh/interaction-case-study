@@ -5,7 +5,7 @@
     --placeholder-text: rgb(113, 116, 119);
     --faded-border: rgba(130, 134, 136, 0.2);
     --shadow-gray: rgb(0, 0, 0, 0.2);
-    --active-border: rgba(0, 91, 117, 0.6);
+    --active-border: rgba(4, 122, 155, 0.6);
     --scrollbar-foreground: rgb(237, 237, 237);
     --checked-radio-background: rgb(245, 245, 245);
 }
@@ -73,6 +73,8 @@ html, body {
     height: calc(100% - 12px);
     max-width: 100%;
     padding: 5px;
+    overflow-x: scroll;
+    overflow-y: hidden;
     scrollbar-color: var(--faded-border) var(--scrollbar-foreground);
     display: flex;
     justify-content: center;
@@ -97,6 +99,10 @@ html, body {
     background: var(--faded-border); 
 }
 
+.gallery__content .selected-thumb{
+    border: 0.2rem solid gray;
+}
+
 .gallery__content img:hover{
     border: 0.2rem solid var(--active-border)
 }
@@ -114,7 +120,7 @@ html, body {
 }
 
 /* CSS related to Clipping & Filtering */
-.clip-circle {
+.clip-curved {
     clip-path: circle(60%);
 }
 
@@ -176,21 +182,24 @@ h2 {
     border-bottom: 0.1rem solid gray;
     font-size: 0.9rem;
 }
-#sidebar input{
-    visibility: hidden;
-}
-#sidebar label{
+
+#sidebar .options .option{
     cursor: pointer;
     padding: 0.5rem 0.5rem;
-    font-size: 1.1rem;
+    border-radius: 0.2rem;
+    transition: all .2s ease-in;
 }
 
-#sidebar label:hover{
+#sidebar .options .option:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+#sidebar .options .selected{
     background-color: rgb(245, 245, 245);
     border-radius: 0.2rem;
 }
 
-#sidebar form{
+#sidebar .options{
     display: flex;
     flex-direction: column;
 }
