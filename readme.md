@@ -38,6 +38,14 @@ You may change anything provided to fit your needs, be it DOM structure, CSS, or
 
 # Discussion Notes
 1. What decisions did you make before you began development?
+    - How to organize the project
+    - How much time to spend
+    - Prioritze requirements 
 1. How did you decide what to work on in order to meet the time constraint?
-1. What was your decision making process for your code organization?
+    - I gave myself 2 hours a day. Within those two hours I went over the requirements list one by one and finished as much as I can within the time. 
+1. What was your decision making process for your code organization?   
+    - Seperated html, css, js files onto seperate files to keep the code organized. 
 1. If you had more time, what would you have implemented?
+    - Message show up(Modal), when user tries to apply filter or clip. 
+    - Responsiveness to small viewports
+    - Study and implement webpack 

@@ -129,53 +129,58 @@ function hasPrefix(className, classList){
 function changeShape(clipChoice) {
     const parentElementArr = clipChoice.parentElement.children;
     const parentElement = clipChoice.parentElement;
-
-    if(imgElement.hasAttribute('class')){
-        if(hasPrefix('clip', imgElement.classList)){
-            for(let i = 0; i < parentElementArr.length; i++){
-                if(imgElement.classList.contains(parentElementArr[i].dataset.clip)){
-                    imgElement.classList.remove(parentElementArr[i].dataset.clip);
-                    imgElement.classList.add(clipChoice.dataset.clip);
+    if(imgElement.hasAttribute('src')){
+        if(imgElement.hasAttribute('class')){
+            if(hasPrefix('clip', imgElement.classList)){
+                for(let i = 0; i < parentElementArr.length; i++){
+                    if(imgElement.classList.contains(parentElementArr[i].dataset.clip)){
+                        imgElement.classList.remove(parentElementArr[i].dataset.clip);
+                        imgElement.classList.add(clipChoice.dataset.clip);
+                    }
                 }
+            }
+            else{
+                imgElement.classList.add(clipChoice.dataset.clip);
             }
         }
         else{
+            console.log('initial clip');
             imgElement.classList.add(clipChoice.dataset.clip);
         }
-    }
-    else{
-        console.log('initial clip');
-        imgElement.classList.add(clipChoice.dataset.clip);
+        
+        colorSelected(parentElement, [].indexOf.call(parentElementArr, clipChoice),'selected');
     }
     
-    colorSelected(parentElement, [].indexOf.call(parentElementArr, clipChoice),'selected');
-    // console.log([].indexOf.call(parentElementArr, clipChoice));
+    console.log('no images');
 }
 
 function changeFilter(filterChoice) {
     const parentElementArr = filterChoice.parentElement.children;
     const parentElement = filterChoice.parentElement;
-    console.log(filterChoice.dataset.filter);
-    
-    if(imgElement.hasAttribute('class')){    
-        if(hasPrefix('filter', imgElement.classList)){
-            for(let i = 0; i < parentElementArr.length; i++){
-                if(imgElement.classList.contains(parentElementArr[i].dataset.filter)){
-                    imgElement.classList.remove(parentElementArr[i].dataset.filter);
-                    imgElement.classList.add(filterChoice.dataset.filter);
+
+    if(imgElement.hasAttribute('src')){
+        if(imgElement.hasAttribute('class')){    
+            if(hasPrefix('filter', imgElement.classList)){
+                for(let i = 0; i < parentElementArr.length; i++){
+                    if(imgElement.classList.contains(parentElementArr[i].dataset.filter)){
+                        imgElement.classList.remove(parentElementArr[i].dataset.filter);
+                        imgElement.classList.add(filterChoice.dataset.filter);
+                    }
                 }
+            }
+            else{
+                imgElement.classList.add(filterChoice.dataset.filter);
             }
         }
         else{
+            console.log('initial filter');
             imgElement.classList.add(filterChoice.dataset.filter);
-        }
-    }
-    else{
-        console.log('initial filter');
-        imgElement.classList.add(filterChoice.dataset.filter);
-    }   
+        }   
 
-    colorSelected(parentElement, [].indexOf.call(parentElementArr, filterChoice),'selected');
+        colorSelected(parentElement, [].indexOf.call(parentElementArr, filterChoice),'selected');
+    }
+
+    console.log('no images');
 }
 
 // Use this function to display filesize in a human-readable format
